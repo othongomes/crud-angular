@@ -1,36 +1,27 @@
+import { CoursesService } from './../services/courses.service';
 import { Component, OnInit } from '@angular/core';
 
 import { AppMaterialModule } from '../../shared/app-material/app-material.module';
 import { Course } from '../model/course';
 
-
-
-
-
-
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [AppMaterialModule
-],
+  imports: [AppMaterialModule],
   templateUrl: './courses.component.html',
-  styleUrl: './courses.component.scss'
+  styleUrl: './courses.component.scss',
 })
-
-export class CoursesComponent implements OnInit{
-
-  courses: Course[] = [
-    {_id: '1', name: 'Angular', category: 'front-end'}
-  ];
-
+export class CoursesComponent implements OnInit {
+  courses: Course[] = [];
   displayedColumns = ['name', 'category'];
 
-  constructor() {
+  //coursesService: CoursesService;
+
+  constructor(private coursesService: CoursesService) {
     // this.courses = [];
+    //this.coursesService = new CoursesService();
+    this.courses = this.coursesService.list();
   }
 
-  ngOnInit(): void {
-
-  }
-
+  ngOnInit(): void {}
 }
