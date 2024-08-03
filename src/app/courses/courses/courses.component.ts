@@ -3,16 +3,23 @@ import { Component, OnInit } from '@angular/core';
 
 import { AppMaterialModule } from '../../shared/app-material/app-material.module';
 import { Course } from '../model/course';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [AppMaterialModule],
+  imports:
+  [
+    AppMaterialModule
+  ],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',
 })
 export class CoursesComponent implements OnInit {
-  courses: Course[] = [];
+
+
+  courses: Observable<Course[]>;
+
   displayedColumns = ['name', 'category'];
 
   //coursesService: CoursesService;
