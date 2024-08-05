@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { SharedModule } from '../../shared/shared.module';
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
+import { CategoryPipe } from '../../shared/pipes/category.pipe';
 
 @Component({
   selector: 'app-courses',
@@ -16,7 +17,8 @@ import { ErrorDialogComponent } from '../../shared/components/error-dialog/error
   [
     AppMaterialModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    CategoryPipe
   ],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',
