@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { SharedModule } from '../../shared/shared.module';
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
 import { CategoryPipe } from '../../shared/pipes/category.pipe';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { relative } from 'path';
 
 @Component({
   selector: 'app-courses',
@@ -28,13 +30,15 @@ export class CoursesComponent implements OnInit {
 
   courses$: Observable<Course[]>;
   // courses: Course[] = [];
-  displayedColumns = ['_id','name', 'category'];
+  displayedColumns = ['_id','name', 'category', 'actions'];
 
   //coursesService: CoursesService;
 
   constructor(
     private coursesService: CoursesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     // this.courses = [];
     //this.coursesService = new CoursesService();
@@ -51,6 +55,10 @@ export class CoursesComponent implements OnInit {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 
   ngOnInit(): void {}

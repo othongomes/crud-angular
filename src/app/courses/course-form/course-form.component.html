@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Criar Curso</mat-card-title>
+    <mat-card-subtitle
+      >Digite as informações do curso para criar um novo
+      curos.</mat-card-subtitle
+    >
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="form">
+      <mat-form-field appearance="outline" class="full-width">
+        <input matInput placeholder="Nome" formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <input matInput placeholder="Categoria" formControlName="category" />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" onclick="onSubmite()">CRIAR</button>
+    <button mat-raised-button onclick="onCancel()">CANCELAR</button>
+  </mat-card-actions>
+</mat-card>
