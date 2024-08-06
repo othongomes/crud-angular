@@ -5,6 +5,7 @@ import { AppMaterialModule } from '../../shared/app-material/app-material.module
 import { CoursesService } from '../services/courses.service';
 import { error } from 'console';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-course-form',
@@ -19,7 +20,8 @@ export class CourseFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private service: CoursesService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private location: Location
   ) {
     this.form = this.formBuilder.group({
       name: [null],
@@ -29,12 +31,19 @@ export class CourseFormComponent {
 
   onSubmite() {
     this.service.save(this.form.value).subscribe(
-      (data) => console.log(data),
+      (data) => this.onSuccess(),
       (error) => this.onError()
     );
   }
 
-  onCancel() {}
+  onCancel() {
+    this.location.back();
+  }
+
+  private onSuccess() {
+    this._snackBar.open('Salvo com sucesso!', '', { duration: 3000 });
+    this.onCancel();
+  }
 
   private onError() {
     this._snackBar.open('Erro ao salvar curso.', '', { duration: 3000 });
